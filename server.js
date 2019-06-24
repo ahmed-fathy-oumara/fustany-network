@@ -9,6 +9,9 @@ const app = express();
 //Connect Database
 connectDB();
 
+//Initialize Middleware
+app.use(express.json({ extended: false }));
+
 //Create a single endpoint to take a get request and send data to the browser
 app.get('/', (req, res) => res.send('API Running'));
 
