@@ -1,4 +1,3 @@
-
 //Getting Express server up & running
 const express = require('express');
 //Importing database
