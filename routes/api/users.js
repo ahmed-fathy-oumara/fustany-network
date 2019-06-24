@@ -10,7 +10,11 @@ const {
   validationResult
 } = require('express-validator/check');
 //Importing bcript for password encryption
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+//Importing jwt
+const jwt = require('jsonwebtoken');
+//Importing config
+const config = require('config');
 //Importing our user model
 const User = require('../../models/User');
 
@@ -87,18 +91,31 @@ router.post('/',
 
       //Encrypt password
       const salt = await bcrypt.genSalt(10);
+
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
 
-      //Return jsonWebToken
-      res.send('User registered');
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
 
+      //JWT
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
     }
-
   }
 );
 
