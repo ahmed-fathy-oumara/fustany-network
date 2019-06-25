@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //Creating profile schema
-const ProfileScheme = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
   //Creating a reference to the user we created before and adding new fields to it
   user: {
     type: mongoose.Schema.Types.ObjectId,
