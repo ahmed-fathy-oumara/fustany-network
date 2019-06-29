@@ -25,7 +25,7 @@ const AddExperience = ({ addExperience, history }) => {
   return (
     <Fragment>
       <h1 class="large text-primary">
-       Add An Experience
+       Add Your Experience
       </h1>
       <p class="lead">
         <i class="fas fa-code-branch"></i> Add all your professional experiences
