@@ -50,7 +50,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           <input
             type="email"
             placeholder="Email Address"
-            name="email" value={email}
+            name="email"
+            value={email}
             onChange={e => onChange(e)}
           />
           <small className="form-text">
