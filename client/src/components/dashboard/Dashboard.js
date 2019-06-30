@@ -17,7 +17,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
   
   //User greeting
   //If user has profile or hasn't profile
