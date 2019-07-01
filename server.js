@@ -2,6 +2,8 @@
 const express = require('express');
 //Importing database
 const connectDB = require('./config/db');
+//Getting Path NodeJS module
+const path = require('path');
 
 //Initialize our app variable with express
 const app = express();
@@ -12,14 +14,21 @@ connectDB();
 //Initialize Middleware
 app.use(express.json({ extended: false }));
 
-//Create a single endpoint to take a get request and send data to the browser
-app.get('/', (req, res) => res.send('API Running'));
-
 //Define routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
+
+//Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  //Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 
 //Look for an enviroment variable called Port to use when we deploy to heroku and locally run it on port 5000
