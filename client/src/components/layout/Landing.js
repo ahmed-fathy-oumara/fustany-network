@@ -13,9 +13,9 @@ const Landing = (isAuthenticated) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">Fustany Network</h1>
+          <h1 className="x-large">Developers Network</h1>
           <p className="lead">
-            Fustany is a fashion and lifestyle portal to inspire Arab women
+            Developers Number 1 Proffesional Network
           </p>
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">Sign Up</Link>
